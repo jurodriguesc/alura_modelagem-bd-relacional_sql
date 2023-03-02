@@ -74,7 +74,7 @@ CREATE TABLE VENDEDORES (
 );COPIAR CÓDIGO
 ```
 
-- Criando todas as tabelas, Júlia percebeu que elas já foram construídas com a chave primária. Mas ainda não entendeu como elas se relacionam. Como será que a tabela “estoque” está relacionada com a tabela “livros”, por exemplo? Fernanda explicou, que para isso precisamos declarar a chave estrangeira, que é o campo que vai fazer a relação entre as tabelas.
+- Criando todas as tabelas, Júlia percebeu que elas já foram construídas com a chave primária. Mas ainda não entendeu como elas se relacionam. Como será que a tabela “estoque” está relacionada com a tabela “livros”, por exemplo? Fernanda explicou, que para isso precisamos **declarar a chave estrangeira, que é o campo que vai fazer a relação entre as tabelas.**
 
 ```sql
 #Relação entre as tabelas Vendas e Livros
