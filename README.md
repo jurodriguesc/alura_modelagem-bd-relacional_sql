@@ -7,7 +7,7 @@ Entendendo SQL através da modelagem relacional de um banco de dados, usando o S
 3. [Esquema e Tabelas](#3-esquema-e-tabelas)
 4. [Inserindo dados](#4-inserindo-dados)
 5. [Consultando e alterando os dados](#5-consultando-e-alterando-os-dados)
-6. [Unindo tabelas](#5-unindo-tabelas)
+6. [Unindo tabelas](#6-unindo-tabelas)
 
 ## 1. Introdução 
 
@@ -170,7 +170,7 @@ WHERE CATEGORIA = "BIOGRAFIA";
 - Depois que o comercial ficou sabendo que as informações já estavam cadastradas nas tabelas, demandou duas tabelas: A primeira, com todos os romances que fossem mais baratos que R$48,00. E a segunda tabela, com todas as poesias que não fossem nem de Camões, nem de Pedrosa. Vamos construir a primeira tabela.
 
 ```sql
-#1.Uma tabela com os romances  que custam menos de 48 reais.
+#1.Uma tabela com os romances que custam menos de 48 reais.
 SELECT * FROM LIVROS
 WHERE CATEGORIA = "ROMANCE" AND PRECO <48;
 
@@ -207,7 +207,70 @@ DELETE FROM LIVROS WHERE ID_LIVRO = 8;
 UPDATE LIVROS SET PRECO = 0.9*PRECO;
 ```
 
+## 6. Unindo Tabelas
 
+Como acompanhamos nos passos anteriores, Júlia já fez a implementação do modelo relacional, criou tabelas e relações e alimentou todas com informações. E após algumas consultas, Júlia ficou com dificuldades de criar uma tabela em que tem tanto os nomes dos vendedores quanto o histórico de pedidos.
+
+Essa dificuldade se deu porque na tabela “Vendedores” tem o código do vendedor e o nome do vendedor, mas na tabela “Histórico de pedidos” tem apenas o código do vendedor, não tendo nome.
+
+Ela pediu ajuda para a Fernanda, para montar essa consulta que une campos de tabelas diferentes. 
+
+```sql
+SELECT VENDAS.ID_VENDEDOR, VENDEDORES.NOME_VENDEDOR, SUM(VENDAS.QTD_VENDIDA)
+FROM VENDAS, VENDEDORES
+WHERE VENDAS.ID_VENDEDOR = VENDEDORES.ID_VENDEDOR
+GROUP BY VENDAS.ID_VENDEDOR;
+```
+
+- Para Júlia identificar o nome dos livros que foram vendidos na tabela VENDAS há três formas:
+```sql
+#1
+SELECT LIVROS.NOME_LIVRO,
+           VENDAS.QTD_VENDIDA
+FROM LIVROS,  VENDAS
+WHERE VENDAS.ID_LIVRO = LIVROS.ID_LIVRO;
+
+#2 - Usando um apelido com o comando AS e referenciando esse apelido nos campos selecionados na consulta
+SELECT A.NOME_LIVRO,
+           B.QTD_VENDIDA
+FROM LIVROS AS  A,  VENDAS AS  B
+WHERE B.ID_LIVRO = A.ID_LIVRO;
+
+#3 - Omitindo o AS
+SELECT A.NOME_LIVRO,
+           B.QTD_VENDIDA
+FROM LIVROS  A,  VENDAS   B
+WHERE B.ID_LIVRO = A.ID_LIVRO;
+```
+
+- Na programação, há diversas maneiras de chegar em uma mesma solução. Para aquele problema de Júlia, que ela queria saber a quantidade de livros por pessoa vendedora, ela também poderia ter usado o comando `INNER JOIN`, que faz a junção entre tabelas e mostra informações que existem em ambas as tabelas referenciadas.
+
+```sql
+SELECT VENDAS.ID_VENDEDOR, VENDEDORES.NOME_VENDEDOR, SUM(VENDAS.QTD_VENDIDA)
+FROM VENDAS INNER JOIN VENDEDORES
+ON VENDAS.ID_VENDEDOR = VENDEDORES.ID_VENDEDOR
+GROUP BY VENDAS.ID_VENDEDOR;
+```
+
+- Ao analisar o histórico de pedidos, Júlia ficou pensando: será que todos os livros da nossa base de dados foram vendidos? Ela ficou pensando nessa dúvida, mas não sabia muito bem como construir uma consulta para trazer essa resposta. Fernanda disse que tem muitas maneiras de construir uma consulta que traga esse resultado, mas que ela poderia usar o `LEFT JOIN`, que é responsável por trazer informações da primeira tabela do join, ou seja, aquela tabela à esquerda, e procurar correspondência, informações, na segunda tabela do join, a tabela à direita.
+
+```sql
+SELECT LIVROS.NOME_LIVRO, 
+	   VENDAS.QTD_VENDIDA
+FROM LIVROS LEFT JOIN VENDAS
+ON LIVROS.ID_LIVRO = VENDAS.ID_LIVRO
+WHERE VENDAS.QTD_VENDIDA IS NULL;
+```
+
+- Fazendo as suas pesquisas, a Júlia percebeu que não tem apenas o `LEFT JOIN`, temos também a junção à direita, o `RIGHT JOIN`, que mantém informações da segunda tabela, ou seja, a tabela à direta do join. Vamos manter essas consultas, mas mudar o `RIGHT JOIN` para sabermos o que aparece.
+
+```sql
+SELECT VENDAS.ID_LIVRO, 
+       LIVROS.NOME_LIVRO, 
+	   VENDAS.QTD_VENDIDA
+FROM LIVROS RIGHT JOIN VENDAS
+ON LIVROS.ID_LIVRO = VENDAS.ID_LIVRO;
+```
 
 
 
