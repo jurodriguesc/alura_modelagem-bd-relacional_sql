@@ -1,5 +1,7 @@
 # Curso Alura Modelagem de banco de dados relacional: entendendo SQL
 
+Entendendo SQL através da modelagem relacional de um banco de dados, usando como exemplo fictício o e-commerce de livros Clube do Livro e o SGBD MySQL. 
+
 1. [Introdução](#1-introdução)
 2. [Escolha do SGBD](#2-escolha-do-sgbd)
 3. [Esquema e Tabelas](#3-esquema-e-tabelas)
