@@ -12,4 +12,6 @@ Júlia, que é desenvolvedora júnior da equipe de Fernanda, ficou curiosa para 
 Fernanda logo explicou, que mesmo usando o SQL como linguagem de acesso aos dados, existem vários sistemas de gerenciamento de banco de dados, disponíveis no mercado.
 Dentro os SGBDs mais comuns, podemos citar o SQL Server, o MySQL, o SQLite e até o DB2 da IBM, por exemplo. Mesmo cada um tempo as suas peculiaridades, todos usam a linguagem SQL para transformar um modelo de alto nível, ou seja, aquele que está mais próximo do nosso entendimento, para o modelo de baixo nível, que está mais próximo da linguagem do computador.
 
-***A equipe escolheu o MySQL para manuseio e organização dos dados.*** Além de ser uma opção gratuita, ele está entre os SGBDs mais difundidos e utilizados.
+**A equipe escolheu o [MySQL](https://dev.mysql.com/) para manuseio e organização dos dados.** Além de ser uma opção gratuita, ele está entre os SGBDs mais difundidos e utilizados.
+
+Júlia ficou animada para criar todas as tabelas aqui no MySQL, e já perguntou para a Fernanda por qual tabela iríamos começar. Fernanda explicou que antes de criar qualquer tabela, era necessário **criar um esquema que irá reunir todas as tabelas que iríamos criar.***
