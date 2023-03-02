@@ -26,7 +26,6 @@ CREATE SCHEMA CLUBE_DO_LIVRO;
 
 ```sql
 #Tabela Livros:
-
 CREATE TABLE LIVROS (
     ID_LIVRO INT NOT NULL,
     NOME_LIVRO VARCHAR(100) NOT NULL,
@@ -38,7 +37,6 @@ CREATE TABLE LIVROS (
 );
 
 #Tabela Estoque:
-
 CREATE TABLE ESTOQUE (
     ID_LIVRO INT NOT NULL,
     QTD_ESTOQUE INT NOT NULL,
@@ -46,7 +44,6 @@ CREATE TABLE ESTOQUE (
 );
 
 #Tabela Vendas:
-
 CREATE TABLE VENDAS (
     ID_PEDIDO INT NOT NULL,
     ID_VENDEDOR INT NOT NULL,
@@ -57,11 +54,34 @@ CREATE TABLE VENDAS (
 );
 
 #Tabela Vendedores:
-
 CREATE TABLE VENDEDORES (
     ID_VENDEDOR INT NOT NULL,
     NOME_VENDEDOR VARCHAR(255) NOT NULL,
  PRIMARY KEY (ID_VENDEDOR)
 );COPIAR CÓDIGO
+```
 
+- Criando todas as tabelas, Júlia percebeu que elas já foram construídas com a chave primária. Mas ainda não entendeu como elas se relacionam. Como será que a tabela “estoque” está relacionada com a tabela “livros”, por exemplo? Fernanda explicou, que para isso precisamos declarar a chave estrangeira, que é o campo que vai fazer a relação entre as tabelas.
+
+```sql
+#Relação entre as tabelas Vendas e Livros
+ALTER TABLE VENDAS ADD CONSTRAINT CE_VENDAS_LIVROS
+FOREIGN KEY (ID_LIVRO)
+REFERENCES LIVROS (ID_LIVRO)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;COPIAR CÓDIGO
+
+#Relação entre as tabelas Livros e Estoque
+ALTER TABLE ESTOQUE ADD CONSTRAINT CE_ESTOQUE_LIVROS
+FOREIGN KEY (ID_LIVRO)
+REFERENCES LIVROS (ID_LIVRO)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+#Relação entre as tabelas Vendedores e Vendas
+ALTER TABLE VENDAS ADD CONSTRAINT CE_VENDAS_VENDEDORES
+FOREIGN KEY (ID_VENDEDOR)
+REFERENCES VENDEDORES (ID_VENDEDOR)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 ```
