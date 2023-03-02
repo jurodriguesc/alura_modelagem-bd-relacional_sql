@@ -110,7 +110,7 @@ Agora que o nosso modelo relacional já está implementado, podemos inserir as i
 ```sql
 SET FOREIGN_KEY_CHECKS = 0;
 ```
-- Quando criamos a tabela LIVROS definimos os campos ID_LIVRO como INT, NOME_LIVRO, a AUTORIA, a EDITORA e a CATEGORIA como VARCHAR(100) e o último campo o PREÇO como DECIMAL(5,2).Seguindo a ordem desses campos podemos inserir o livro Percy Jackson e o Ladrão de Raios e todas essas características usando o comando abaixo:
+- Quando criamos a tabela `LIVROS` definimos os campos `ID_LIVRO` como `INT`, `NOME_LIVRO`, a `AUTORIA`, a `EDITORA` e a `CATEGORIA` como `VARCHAR(100)` e o último campo o `PREÇO` como `DECIMAL(5,2)`.Seguindo a ordem desses campos podemos inserir o livro Percy Jackson e o Ladrão de Raios e todas essas características usando o comando abaixo:
 
 ```sql
 INSERT INTO LIVROS VALUES (
@@ -122,3 +122,37 @@ INSERT INTO LIVROS VALUES (
 34.45
 );
 ```
+- Júlia ficou responsável por inserir 11 linhas na tabela “Livros”, e ficou pensando se teria uma maneira de otimizar os seus códigos. Ela inseriu as características dos livros: “A Volta ao Mundo em 80 Dias”, “O Cortiço” e “Dom Casmurro”. Mas, conseguimos perceber que todo esses comandos precisam ser executados unicamente.
+
+Ela mostrou esse código para a Fernanda, para ver se tem outra maneira de otimizá-lo. Fernanda explicou, que dá para inserir várias linhas em uma única execução. Para isso, ela vai precisar copiar cada linha, cada informação que está entre parênteses e separar por vírgula. 
+
+```sql
+INSERT INTO LIVROS VALUES
+(2,    'A Volta ao Mundo em 80 Dias',    'Júlio Verne',         'Principis',     'Aventura',    21.99),
+(3,    'O Cortiço',                     'Aluísio de Azevedo',  'Panda Books',   'Romance',    47.8),
+(4,    'Dom Casmurro',                     'Machado de Assis',    'Via Leitura',   'Romance',    19.90),
+(5,    'Memórias Póstumas de Brás Cubas',    'Machado de Assis',    'Antofágica',    'Romance',    45),
+(6,    'Quincas Borba',                 'Machado de Assis',    'L&PM Editores', 'Romance',    48.5),
+(7,    'Ícaro',                             'Gabriel Pedrosa',     'Ateliê',          'Poesia',    36),
+(8,    'Os Lusíadas',                     'Luís Vaz de Camões',  'Montecristo',   'Poesia',    18.79),
+(9,    'Outros Jeitos de Usar a Boca',    'Rupi Kaur',          'Planeta',          'Poesia',    34.8);
+```
+
+- Jorge é desenvolvedor júnior da equipe de Fernanda, e estava acompanhando todo esse processo. Ele ficou responsável por continuar o preenchimento das informações. Só que ao se deparar com o seu código, percebeu que escreveu as informações em uma ordem diferente da ordem da tabela. 
+
+Percebendo a preocupação de Jorge, Fernanda logo disse que é possível inserir informações fora de ordem, porém, para isso, é preciso declarar a ordem que você deseja, que você inseriu os seus campos. E essa ordem deve ser declarada antes do comando `Values`.
+
+```sql
+#Inserindo valores fora de ordem
+INSERT INTO LIVROS 
+(CATEGORIA, AUTORIA, NOME_LIVRO, EDITORA, ID_LIVRO, PRECO)
+VALUES
+('Biografia' ,    'Malala Yousafzai', 'Eu sou Malala'       , 'Companhia das Letras', 11, 22.32),
+('Biografia' ,    'Michelle Obama'  , 'Minha história'      , 'Objetiva'            ,    12,    57.90),
+('Biografia' ,    'Anne Frank'      , 'Diário de Anne Frank', 'Pe Da Letra'         , 13, 34.90);
+```
+
+
+
+
+
