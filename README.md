@@ -17,3 +17,51 @@ Dentro os SGBDs mais comuns, podemos citar o SQL Server, o MySQL, o SQLite e at�
 **A equipe escolheu o [MySQL](https://dev.mysql.com/) para manuseio e organização dos dados.** Além de ser uma opção gratuita, ele está entre os SGBDs mais difundidos e utilizados.
 
 - Júlia ficou animada para criar todas as tabelas aqui no MySQL, e já perguntou para a Fernanda por qual tabela iríamos começar. Fernanda explicou que antes de criar qualquer tabela, era necessário **criar um esquema que irá reunir todas as tabelas que iríamos criar.**
+
+```sql
+CREATE SCHEMA CLUBE_DO_LIVRO;
+```
+
+- O modelo relacional do Clube do Livro define quatro diferentes tipos de tabelas: Livros, Estoque, Vendas e Vendedores.
+
+```sql
+#Tabela Livros:
+
+CREATE TABLE LIVROS (
+    ID_LIVRO INT NOT NULL,
+    NOME_LIVRO VARCHAR(100) NOT NULL,
+    AUTORIA VARCHAR(100) NOT NULL,
+    EDITORA VARCHAR(100) NOT NULL,
+    CATEGORIA VARCHAR(100) NOT NULL,
+    PREÇO DECIMAL(5,2) NOT NULL,  
+ PRIMARY KEY (ID_LIVRO)
+);
+
+#Tabela Estoque:
+
+CREATE TABLE ESTOQUE (
+    ID_LIVRO INT NOT NULL,
+    QTD_ESTOQUE INT NOT NULL,
+ PRIMARY KEY (ID_LIVRO)
+);
+
+#Tabela Vendas:
+
+CREATE TABLE VENDAS (
+    ID_PEDIDO INT NOT NULL,
+    ID_VENDEDOR INT NOT NULL,
+    ID_LIVRO INT NOT NULL,
+    QTD_VENDIDA INT NOT NULL,
+    DATA_VENDA DATE NOT NULL,
+ PRIMARY KEY (ID_VENDEDOR,ID_PEDIDO)
+);
+
+#Tabela Vendedores:
+
+CREATE TABLE VENDEDORES (
+    ID_VENDEDOR INT NOT NULL,
+    NOME_VENDEDOR VARCHAR(255) NOT NULL,
+ PRIMARY KEY (ID_VENDEDOR)
+);COPIAR CÓDIGO
+
+```
