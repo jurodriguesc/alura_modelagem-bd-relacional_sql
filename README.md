@@ -124,7 +124,7 @@ INSERT INTO LIVROS VALUES (
 ```
 - Júlia ficou responsável por inserir 11 linhas na tabela “Livros”, e ficou pensando se teria uma maneira de otimizar os seus códigos. Ela inseriu as características dos livros: “A Volta ao Mundo em 80 Dias”, “O Cortiço” e “Dom Casmurro”. Mas, conseguimos perceber que todo esses comandos precisam ser executados unicamente.
 
-Ela mostrou esse código para a Fernanda, para ver se tem outra maneira de otimizá-lo. Fernanda explicou, que dá para inserir várias linhas em uma única execução. Para isso, ela vai precisar copiar cada linha, cada informação que está entre parênteses e separar por vírgula. 
+> Ela mostrou esse código para a Fernanda, para ver se tem outra maneira de otimizá-lo. Fernanda explicou, que dá para inserir várias linhas em uma única execução. Para isso, ela vai precisar copiar cada linha, cada informação que está entre parênteses e separar por vírgula. 
 
 ```sql
 INSERT INTO LIVROS VALUES
@@ -140,7 +140,7 @@ INSERT INTO LIVROS VALUES
 
 - Jorge é desenvolvedor júnior da equipe de Fernanda, e estava acompanhando todo esse processo. Ele ficou responsável por continuar o preenchimento das informações. Só que ao se deparar com o seu código, percebeu que escreveu as informações em uma ordem diferente da ordem da tabela. 
 
-Percebendo a preocupação de Jorge, Fernanda logo disse que é possível inserir informações fora de ordem, porém, para isso, é preciso declarar a ordem que você deseja, que você inseriu os seus campos. E essa ordem deve ser declarada antes do comando `Values`.
+> Percebendo a preocupação de Jorge, Fernanda logo disse que é possível inserir informações fora de ordem, porém, para isso, é preciso declarar a ordem que você deseja, que você inseriu os seus campos. E essa ordem deve ser declarada antes do comando `Values`.
 
 ```sql
 #Inserindo valores fora de ordem
