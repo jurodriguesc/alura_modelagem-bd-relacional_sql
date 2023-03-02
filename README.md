@@ -6,7 +6,7 @@ Entendendo SQL através da modelagem relacional de um banco de dados, usando o S
 2. [Escolha do SGBD](#2-escolha-do-sgbd)
 3. [Esquema e Tabelas](#3-esquema-e-tabelas)
 4. [Inserindo dados](#4-inserindo-dados)
-5. [Consultando e alterando os dados](#4-consultando-e-alterando-os-dados)
+5. [Consultando e alterando os dados](#5-consultando-e-alterando-os-dados)
 6. [Unindo tabelas](#5-unindo-tabelas)
 
 ## 1. Introdução 
@@ -150,6 +150,61 @@ VALUES
 ('Biografia' ,    'Malala Yousafzai', 'Eu sou Malala'       , 'Companhia das Letras', 11, 22.32),
 ('Biografia' ,    'Michelle Obama'  , 'Minha história'      , 'Objetiva'            ,    12,    57.90),
 ('Biografia' ,    'Anne Frank'      , 'Diário de Anne Frank', 'Pe Da Letra'         , 13, 34.90);
+```
+
+## 5. Consultando e alterando os dados 
+
+Após inserir todos os dados, Júlia ficou com uma dúvida: como podemos conferir todas as informações que foram inseridas? Fernanda explicou que existe um comando bem simples, que pode nos mostrar isso, e que quase que forma uma frase em inglês.
+
+```sql
+SELECT ID_LIVRO AS "Código do Livro" FROM LIVROS;
+```
+
+- Jorge também ficou animado para verificar os dados que foram inseridos, e usou o comando `SELECT * FROM LIVROS`, para selecionar todas as informações da tabela “Livros”. Mas ele estava mais interessado em verificar apenas as biografias. Para isso, precisamos montar uma consulta mais específica, usando o comando `WHERE`, para construir um filtro.
+
+```sql
+SELECT * FROM LIVROS
+WHERE CATEGORIA = "BIOGRAFIA";
+```
+
+- Depois que o comercial ficou sabendo que as informações já estavam cadastradas nas tabelas, demandou duas tabelas: A primeira, com todos os romances que fossem mais baratos que R$48,00. E a segunda tabela, com todas as poesias que não fossem nem de Camões, nem de Pedrosa. Vamos construir a primeira tabela.
+
+```sql
+#1.Uma tabela com os romances  que custam menos de 48 reais.
+SELECT * FROM LIVROS
+WHERE CATEGORIA = "ROMANCE" AND PRECO <48;
+
+#2. Poesias que não são nem de Luís Vaz de Camões nem de Gabriel Pedrosa. 
+SELECT * FROM LIVROS
+WHERE CATEGORIA = "POESIA" AND NOT (AUTORIA = "Luís Vaz de Camões" OR AUTORIA = "Gabriel Pedrosa")
+```
+
+- Júlia queria entender quais foram os livros pedidos, e lá no histórico de pedidos da tabela Venda usou o comando `SELECT * FROM VENDAS` para dar uma olhada em todas as informações. Porém, ela percebeu que os números dos livros se repetem, e ela queria uma seleção única desses livros.Para isso, é preciso fazer uma mudança nesse comando, acrescentando o comando `DISTINCT`.
+
+```sql
+SELECT DISTINCT ID_LIVRO FROM VENDAS;
+```
+
+- E ela ficou mais curiosa ainda para saber apenas os livros que foram vendidos pelo vendedor 1.
+
+```sql
+SELECT DISTINCT ID_LIVRO FROM VENDAS
+WHERE ID_VENDEDOR = 1
+ORDER BY ID_LIVRO;
+```
+
+- O comercial do Clube do Livro estava acompanhando toda a implementação do modelo relacional e da inserção de formações pela equipe de Fernanda. E ao conferir as informações, percebeu que “Os Lusíadas” estava na tabela de livros, mas ele não estava mais sendo vendido pela empresa. Então, solicitou a retirada, a exclusão dessa linha da tabela. 
+
+```sql
+SELECT * FROM LIVROS; #"Os Lusíadas --> ID_LIVRO = 8
+
+DELETE FROM LIVROS WHERE ID_LIVRO = 8;
+```
+
+- Aproveitando essas alterações nas tabelas, o comercial fez mais um pedido, nessa nova temporada, todos os livros estariam com 10% de desconto, e para isso, precisaríamos alterar todos os preços da tabela “Livros”.
+
+```sql
+UPDATE LIVROS SET PRECO = 0.9*PRECO;
 ```
 
 
