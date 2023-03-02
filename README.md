@@ -1,11 +1,11 @@
 # Curso Alura Modelagem de banco de dados relacional: entendendo SQL
 
-Entendendo SQL através da modelagem relacional de um banco de dados, usando como exemplo fictício o e-commerce de livros Clube do Livro e o SGBD MySQL. 
+Entendendo SQL através da modelagem relacional de um banco de dados, usando o SGBD MySQL com dados fictícios de um e-commerce de livros chamado Clube do Livro.  
 
 1. [Introdução](#1-introdução)
 2. [Escolha do SGBD](#2-escolha-do-sgbd)
 3. [Esquema e Tabelas](#3-esquema-e-tabelas)
-4. [Inserindo dados](#3-inserindo-dados)
+4. [Inserindo dados](#4-inserindo-dados)
 5. [Consultando e alterando os dados](#4-consultando-e-alterando-os-dados)
 6. [Unindo tabelas](#5-unindo-tabelas)
 
@@ -99,4 +99,26 @@ FOREIGN KEY (ID_VENDEDOR)
 REFERENCES VENDEDORES (ID_VENDEDOR)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
+```
+
+## 4. Inserindo Dados
+
+Agora que o nosso modelo relacional já está implementado, podemos inserir as informações. Fernanda explicou que a inserção de dados pode ser usada através do comando `INSERT INTO`. E Júlia logo perguntou por qual tabela iríamos começar.
+
+- Fernanda explicou que podemos começar por qualquer tabela, desde que a relação entre essas duas tabelas esteja desativada. Ou seja, aquela chave estrangeira não esteja mais ligando uma tabela a outra.
+
+```sql
+SET FOREIGN_KEY_CHECKS = 0;
+```
+- Quando criamos a tabela LIVROS definimos os campos ID_LIVRO como INT, NOME_LIVRO, a AUTORIA, a EDITORA e a CATEGORIA como VARCHAR(100) e o último campo o PREÇO como DECIMAL(5,2).Seguindo a ordem desses campos podemos inserir o livro Percy Jackson e o Ladrão de Raios e todas essas características usando o comando abaixo:
+
+```sql
+INSERT INTO LIVROS VALUES (
+ 1,
+'Percy Jackson e o Ladrão de Raios',
+'Rick Riordan',
+'Intrínseca',
+'Aventura',
+34.45
+);
 ```
