@@ -1,5 +1,14 @@
 # Curso Alura Modelagem de banco de dados relacional: entendendo SQL
 
+1. [Introdução](#1-introdução)
+2. [Escolha do SGBD](#2-escolha-do-sgbd)
+3. [Esquema e Tabelas](#3-esquema-e-tabelas)
+4. [Inserindo dados](#3-inserindo-dados)
+5. [Consultando e alterando os dados](#4-consultando-e-alterando-os-dados)
+6. [Unindo tabelas](#5-unindo-tabelas)
+
+## 1. Introdução 
+
 Fernanda é desenvolvedora no Clube do Livro, um e-commerce de artigos literários e livros. Ela recebeu de Artur, seu colega, esse modelo relacional, baseado em uma entrevista que mapeou as necessidades e os requisitos da empresa. 
 
 ![Modelo Relacional](modelo_relacional.png)
@@ -7,6 +16,8 @@ Fernanda é desenvolvedora no Clube do Livro, um e-commerce de artigos literári
 Nós temos quatro principais tabelas. A primeira tem os livros e as suas características, que está relacionada com a tabela “estoque”, que contém a quantidade de livros disponíveis na empresa. Temos também o histórico de pedidos na tabela “vendas”, que está relacionada com os vendedores do Clube do Livro.
 
 A missão de Fernanda e sua equipe é fazer a implementação desse modelo relacional em um sistema de gerenciamento de banco de dados, ou SGBD, se você preferir. Após a implementação, será feita a inserção de informações nesse banco de dados. Além de consultar e alterar essas informações usando a linguagem SQL.
+
+## 2. Escolha do SGBD
 
 Júlia, que é desenvolvedora júnior da equipe de Fernanda, ficou curiosa para saber como iremos gerenciar o banco de dados aqui no Clube do Livro.
 
@@ -16,7 +27,9 @@ Dentro os SGBDs mais comuns, podemos citar o SQL Server, o MySQL, o SQLite e at�
 
 **A equipe escolheu o [MySQL](https://dev.mysql.com/) para manuseio e organização dos dados.** Além de ser uma opção gratuita, ele está entre os SGBDs mais difundidos e utilizados.
 
-- Júlia ficou animada para criar todas as tabelas aqui no MySQL, e já perguntou para a Fernanda por qual tabela iríamos começar. Fernanda explicou que antes de criar qualquer tabela, era necessário **criar um esquema que irá reunir todas as tabelas que iríamos criar.**
+## 3. Esquema e Tabelas
+
+Júlia ficou animada para criar todas as tabelas aqui no MySQL, e já perguntou para a Fernanda por qual tabela iríamos começar. Fernanda explicou que antes de criar qualquer tabela, era necessário **criar um esquema que irá reunir todas as tabelas que iríamos criar.**
 
 ```sql
 CREATE SCHEMA CLUBE_DO_LIVRO;
